@@ -1,12 +1,12 @@
 {
-  "id": "net.webpresso.geotag-logger",
+  "id": "net.webpresso.geotaglogger",
   "package_format_version": 2,
   "loc_name": "Geotag Logger",
   "version": "0.0.1",
   "icon": "icon.png",
-  "miniicon": "icon.png",
+  "miniicon": "icon-small.png",
   "vendor": "webpresso.net",
   "vendorurl": "webpresso.net",
-  "app": "net.webpresso.geotag-logger",
-  "services": ["net.webpresso.geotag-logger.service"]
+  "app": "net.webpresso.geotaglogger",
+  "services": ["net.webpresso.geotaglogger.service"]
 }
