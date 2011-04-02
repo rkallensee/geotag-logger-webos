@@ -1,0 +1,9 @@
+{
+    "id": "com.palmdts.servicesample",
+    "version": "1.0.0",
+    "vendor": "Palm",
+    "type": "web",
+    "main": "index.html",
+    "title": "Sample Service Call",
+    "icon": "icon.png"
+}

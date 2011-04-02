@@ -1,0 +1,12 @@
+{
+  "id": "com.palmdts.servicesample",
+  "package_format_version": 2,
+  "loc_name": "Palm Contact Sync Demo",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "miniicon": "icon.png",
+  "vendor": "Palm",
+  "vendorurl": "palm.com",
+  "app": "com.palmdts.servicesample",
+  "services": ["com.palmdts.servicesample.service"]
+}

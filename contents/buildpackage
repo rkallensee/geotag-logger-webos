@@ -1,0 +1,5 @@
+palm-package servicesample.application servicesample.srv servicesample.package 
+palm-install -r com.palmdts.servicesample
+palm-install com.palmdts.servicesample_1.0.0_all.ipk
+palm-launch com.palmdts.servicesample.app
+ 

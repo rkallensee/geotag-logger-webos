@@ -1,0 +1,12 @@
+This sample has 2 parts
+1. A regular SDK application
+2. New JS service
+
+To install the complete package simply run the build script, the commands contained in the script are
+palm-package servicesample.application servicesample.srv servicesample.package 
+palm-install -r com.palmdts.servicesample
+palm-install com.palmdts.servicesample_1.0.0_all.ipk
+
+Once install the webos app can call the service by using the call
+
+this.controller.serviceRequest('palm://com.palmdts.servicesample.service', {}

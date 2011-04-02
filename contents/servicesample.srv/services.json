@@ -1,0 +1,14 @@
+{
+"id": "com.palmdts.servicesample.service",
+"description": "Hello World Demo Service",
+"services": [ {
+    "name": "com.palmdts.servicesample.service",
+    "description": "helloworld example",
+    "commands": [ { 
+            "name": "hello", 
+            "assistant": "HelloCommandAssistant",
+			"public": true
+             }
+           ] 
+        }]
+}
