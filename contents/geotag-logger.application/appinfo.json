@@ -1,0 +1,9 @@
+{
+    "id": "net.webpresso.geotag-logger",
+    "version": "0.0.1",
+    "vendor": "webpresso.net",
+    "type": "web",
+    "main": "index.html",
+    "title": "Geotag Logger",
+    "icon": "icon.png"
+}

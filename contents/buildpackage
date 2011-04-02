@@ -1,5 +1,5 @@
-palm-package servicesample.application servicesample.srv servicesample.package 
-palm-install -r com.palmdts.servicesample
-palm-install com.palmdts.servicesample_1.0.0_all.ipk
-palm-launch com.palmdts.servicesample.app
- 
+palm-package geotag-logger.application geotag-logger.srv geotag-logger.package
+palm-install -r net.webpresso.geotag-logger
+palm-install net.webpresso.geotag-logger_0.0.1_all.ipk
+palm-launch net.webpresso.geotag-logger
+

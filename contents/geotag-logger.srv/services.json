@@ -1,0 +1,14 @@
+{
+"id": "net.webpresso.geotag-logger",
+"description": "Geotag-logger service",
+"services": [ {
+    "name": "net.webpresso.geotag-logger.service",
+    "description": "geotag main service",
+    "commands": [ {
+            "name": "hello",
+            "assistant": "HelloCommandAssistant",
+            "public": true
+             }
+           ]
+        }]
+}
