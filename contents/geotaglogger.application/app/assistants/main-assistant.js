@@ -127,7 +127,7 @@ MainAssistant.prototype.handleExportGPX = function( r ) {
     var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>'
         + '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="http://forge.webpresso.net/projects/geotag-logger" version="1.1" '
             + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-            + 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">';
+            + 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">'
             + '<trk>'
                 + '<name><![CDATA[geotag-logger for WebOS track]]></name>'
                 + '<desc><![CDATA[Exported track to geotag your pictures.]]></desc>'
