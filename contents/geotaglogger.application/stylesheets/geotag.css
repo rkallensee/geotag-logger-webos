@@ -1,3 +1,8 @@
 #main .palm-page-header-wrapper .geotag-header-icon {
     background: url(../icon-small.png) center no-repeat;
 }
+
+#main .palm-info-text {
+    margin: 0;
+    padding: 0;
+}

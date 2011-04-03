@@ -1,14 +1,35 @@
 <div id="main">
-    <div class="palm-page-header">
+    <div class="palm-page-header multi-line">
         <div class="palm-page-header-wrapper">
             <div class="icon geotag-header-icon"></div>
             <div class="title">
                 Geotag Recorder
             </div>
+            <div class="subtitle">
+                Record your position to geo-tag photos from an external camera.
+            </div>
+        </div>
+    </div>
+
+    <div class="palm-group">
+        <div class="palm-group-title">
+            Manual tracking
+        </div>
+        <div x-mojo-element="Button" id="RecordButton"></div>
+        <div class="palm-info-text" x-mojo-loc=''>
+            This will store your current position once.
+        </div>
+    </div>
+
+    <div class="palm-group">
+        <div class="palm-group-title">
+            Continuous tracking
+        </div>
+        <div x-mojo-element="Button" id="RecordContinuousButton"></div>
+        <div class="palm-info-text" x-mojo-loc=''>
+            This will start tracking your position every 5 minutes
+            while this application is open and this scene is active. Tap again
+            to stop this.
         </div>
     </div>
 </div>
-
-<div x-mojo-element="Button" id="RecordButton"></div>
-
-<div x-mojo-element="Button" id="ExportButton"></div>

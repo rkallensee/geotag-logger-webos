@@ -5,5 +5,7 @@
     "type": "web",
     "main": "index.html",
     "title": "Geotag Logger",
-    "icon": "icon.png"
+    "icon": "icon.png",
+    "noDeprecatedStyles": true,
+    "theme": "light"
 }

@@ -9,6 +9,9 @@
         "source": "vendor/adaptors/WebkitSQLiteAdaptor.js"
     },
     {
+        "source": "app/assistants/app-assistant.js"
+    },
+    {
         "source": "app/assistants/stage-assistant.js"
     },
     {

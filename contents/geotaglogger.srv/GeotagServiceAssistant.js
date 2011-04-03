@@ -18,30 +18,31 @@ GeotagServiceAssistant.prototype.run = function(future) {
     }
 
     var dirname = '/media/internal/geotag-logger/';
-    var filename = '2011-03-23_08-48-00.gpx';
+    var filename = this.getFilename();
     var gpxPath = dirname + filename;
 
     if( !path.existsSync(dirname) ) {
         fs.mkdirSync(dirname, 0777);
     }
 
-    fs.writeFileSync(gpxPath, args.data, 'utf8');
-    future.result = { reply: 'super!' };
+    //fs.writeFileSync(gpxPath, args.data, 'utf8');
+    //future.result = { reply: 'super!' };
 
-/*
-    fs.open(gpxPath, "a", 0666, function(err, fd) {
+    //fs.open(gpxPath, "a", 0666, function(err, fd) {
+    //    if( err ) future.result = {reply: 'super!'};
+    //    fs.writeSync(fd, args.data, null, 'utf8');
+    //    future.result = { reply: 'super!' };
+    //    return;
+    //});
+
+    fs.open(gpxPath, "a", 0777, function(err, fd) {
         if( err ) future.result = {reply: 'super!'};
-        fs.writeSync(fd, args.data, null, 'utf8');
-        future.result = { reply: 'super!' };
-        return;
-/*
+
         fs.write(fd, args.data, null, 'utf8', function (err, written) {
             if(err) future.result = {error: false, text: err};
             future.result = {error: false, text: 'Successfully exported GPX.'};
         });
-*//*
     });
-*/
 
 /*
     this.writeData(
@@ -71,4 +72,14 @@ GeotagServiceAssistant.prototype.writeData = function(filename, data, callback) 
         }
     });
 
+};
+
+GeotagServiceAssistant.prototype.getFilename = function() {
+    var d = new Date();
+
+    return d.getFullYear()+'-'+(((parseInt(d.getMonth())+1) < 10 ? '0' : '')+(parseInt(d.getMonth())+1))
+        +'-'+((d.getDate() < 10 ? '0' : '')+d.getDate())+'_'
+        +((d.getHours() < 10 ? '0' : '')+d.getHours())+'-'
+        +((d.getMinutes() < 10 ? '0' : '')+d.getMinutes())+'-'
+        +((d.getSeconds() < 10 ? '0' : '')+d.getSeconds())+'-'+d.getMilliseconds()+'.gpx';
 };
