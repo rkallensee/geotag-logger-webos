@@ -1,5 +1,5 @@
 palm-package geotaglogger.application geotaglogger.srv geotaglogger.package
 palm-install -r net.webpresso.geotaglogger
-palm-install net.webpresso.geotaglogger_0.0.1_all.ipk
+palm-install net.webpresso.geotaglogger_0.1.0_all.ipk
 palm-launch net.webpresso.geotaglogger
 

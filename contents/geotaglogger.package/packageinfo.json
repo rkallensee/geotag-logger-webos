@@ -2,7 +2,7 @@
   "id": "net.webpresso.geotaglogger",
   "package_format_version": 2,
   "loc_name": "Geotag Logger",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "icon": "icon.png",
   "miniicon": "icon-small.png",
   "vendor": "webpresso.net",

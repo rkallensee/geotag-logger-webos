@@ -3,10 +3,11 @@
         <div class="palm-page-header-wrapper">
             <div class="icon geotag-header-icon"></div>
             <div class="title">
-                Geotag logger 0.0.1
+                Geotag logger 0.1
             </div>
             <div class="subtitle">
-                Record your position to geo-tag photos from an external camera.
+                Record your position to geo-tag photos from an external camera.<br />
+                <i>Developed by <a href="http://raphael.kallensee.name">Raphael Kallensee</a>.</i>
             </div>
         </div>
     </div>
@@ -21,16 +22,79 @@
                 <div class="palm-row-wrapper">
                     <div style="margin:5px; padding:5px; font-weight: normal;">
                         <small>
+                            <strong>Sorry, what's geo-tagging?</strong><br />
+                            Geotagging of pictures just means to store the (more or less exact) position
+                            where the picture was taken
+                            as metadata into your pictures. This allows you to do interesting stuff with
+                            the help of photo-applications: display your images on a world-map, see where
+                            you took the pictures a few years later and so on. Flickr, for example, can
+                            show a small map next to the image if your pictures are geo-tagged and you
+                            activated the respective option.<br />
+                            The pictures from your WebOS phone camera can be easily geo-tagged automatically
+                            by turning on the option in the phone settings. But for (dedicated) photo cameras
+                            without a GPS sensor, it's a bit more complicated. This is where "Geotag logger"
+                            kicks in.
+                            <br /><br />
+                            <strong>What is "Geotag logger"?</strong><br />
                             This application was designed to help with geo-tagging images from an external
-                            camera, e.g. your DSLR camera. The pictures from your WebOS phone can be easily
-                            geo-tagged by turning on the option in the phone settings. But for photo
-                            cameras without a GPS sensor, it's a bit more complicated. There are external
-                            devices you can buy to track your position and afterwards "merge" the geo-coordinates
-                            into your pictures. But since you own a WebOS device with a GPS sensor, you can just
+                            camera, e.g. your DSLR camera. There are external devices you can buy to track
+                            your position and afterwards "merge" the geo-coordinates into your pictures. But
+                            since you own a WebOS device with a GPS sensor, you can just
                             use it to log your position with this tiny application. Afterwards you can use
-                            <a href="http://code.google.com/p/gpicsync/">GPicSync</a> or one of the many other
-                            software to include the geo-information from the GPX file you exported from this
-                            application into your pictures.
+                            <a href="http://geotag.sourceforge.net/">Geotag</a>,
+                            <a href="http://code.google.com/p/gpicsync/">GPicSync</a> or another
+                            existing free and open-source software to include the geo-information from the GPX
+                            file you exported from this application into your pictures. The desktop application
+                            matches the time from your position log and your photos, so you should set your
+                            WebOS device clock to the correct time as well as your camera clock.
+                            <br />
+                            To sum up: Basically this application just tracks your position and provides you a
+                            GPX file which you can use to tag your photos with a third-party desktop application.
+                            <br /><br />
+                            <strong>Tracking.</strong><br />
+                            If you just take a few photos here and there, it should be perfectly ok to just hit "Record single
+                            trackpoint" before/after you took the photo. If you are moving a lot and take a lot of
+                            photos, you should possibly activate "Record continuous". While this mode is active (visible by the
+                            spinner in the right edge of the button), the application tracks your position every five minutes.
+                            While this might drain your battery a bit more, it's also a lot more convenient since you don't
+                            have to remember to track your position every few minutes. Just hit the button a second time to
+                            stop the continuous tracking. Be aware that the position might be inaccurate when you activated
+                            continuous tracking and you keep your device in a bag or your position doesn't allow accurate
+                            tracking, e.g. in buildings.
+                            <br /><br />
+                            <strong>Export.</strong><br />
+                            After tracking your position and shooting a lot of photos, you're back to your desktop computer,
+                            editing your photos and you now want to geo-tag them. You just have to export the data stored in
+                            your phone by using the application menu. Select "Export GPX" and then select the GPX version.
+                            In most of the cases it should be fine to take "GPX v1.1" since it's the current GPX version. Older
+                            applications might be picky and just support the older format - so if you get into trouble with
+                            the 1.1 version, just try "GPX v1.0". After you get the confirmation that your data was saved, you
+                            can attach your WebOS device to your computer. On the USB partition you now find a new folder named
+                            "geotag-logger". In this folder you can find all your exported GPX files and copy or move them
+                            to your desktop computer.
+                            <br /><br />
+                            <strong>Clear database.</strong><br />
+                            If you exported your tracks and geo-tagged your photos, you should clean up. Just select
+                            "Clear database" from the application menu. This empties the tracking database of your application,
+                            but of course it doesn't delete exported GPX files on your USB partition. So you can start with a
+                            fresh database the next time you're going out to take photos.
+                            <br /><br />
+                            <strong>View your tracks on the go.</strong><br />
+                            If you want to show your tracks on your WebOS device, you can use the free application
+                            <a href="http://developer.palm.com/appredirect/?packageid=com.rustyapps.gpxmapper">GPX Mapper</a>
+                            from the App Catalog. Just export a GPX file and then open it with "GPX Mapper". It displays your
+                            tracks as a Google Maps overlay.
+                            <br /><br />
+                            <strong>Credits.</strong><br />
+                            The icon of this application consists of two icons of the great
+                            <a href="http://tango.freedesktop.org/Tango_Icon_Library">Tango Icon Library</a>.
+                            <br /><br />
+                            <strong>Free and open-source software.</strong><br />
+                            This application is <a href="http://en.wikipedia.org/wiki/Free_software">free and open source
+                            software</a>, licensed under the GPL v3. This means that the application is not only free of
+                            charge, but you can also share it with others, look into the source code (if you're a software
+                            developer), modify it as you like to and share your improvements with others. You can find the
+                            source code in the GIT repository by following the "Website" link below.
                         </small>
                     </div>
                 </div>
@@ -52,6 +116,5 @@
             </div>
         </div>
     </div>
-    <div style="padding: 10px 0p 0px 0px; margin: 0;"><center><img src="images/gplv3-127x51.png" alt="" /></center></div>
-    <p style="margin-top: 5px;">This application is free and open source software, licensed under the GPL v3.</p>
+    <div style="padding: 10px 0p 5px 0px; margin: 0;"><center><img src="images/gplv3-127x51.png" alt="GPL v3" /></center></div>
 </div>

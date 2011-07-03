@@ -1,0 +1,126 @@
+<div id="help">
+    <div class="palm-page-header multi-line">
+        <div class="palm-page-header-wrapper">
+            <div class="icon geotag-header-icon"></div>
+            <div class="title">
+                Geotag-Logger 0.1
+            </div>
+            <div class="subtitle">
+                Tracken Sie Ihre Position, um später Fotos einer Fotokamera mit Geo-Tags zu versehen.<br />
+                <i>Developed by <a href="http://raphael.kallensee.name">Raphael Kallensee</a>.</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="fade-top-with-arrow" x-mojo-scroll-fade="top"></div>
+    <div class="fade-bottom-arrow-with-buttons" x-mojo-scroll-fade="bottom"></div>
+
+    <div class="palm-group">
+        <div class="palm-group-title" id="helpTitle">Help</div>
+        <div class="palm-list">
+            <div class="palm-row single">
+                <div class="palm-row-wrapper">
+                    <div style="margin:5px; padding:5px; font-weight: normal;">
+                        <small>
+                            <strong>Was ist eigentlich Geo-Tagging?</strong><br />
+                            Geo-Tagging von Fotos bedeutet das Speichern der Position, an dem das Foto
+                            aufgenommen wurde, als Metadaten in der Bilddatei. Dies ermöglicht
+                            Foto-Anwendungen, interessante Funktionen bereitzustellen: beispielsweise
+                            die Anzeige von Fotos auf einer Weltkarte. Die Foto-Community Flickr zeigt,
+                            sofern die Funktion in den Einstellungen aktiviert ist, neben jedem Foto eine
+                            kleine Karte mit dem Aufnahmeort an.<br />
+                            WebOS-Geräte können die Fotos, die mit der integrierten Kamera aufgenommen wurden,
+                            automatisch mit Geo-Informationen versehen, wenn die Option in den Kameraeinstellungen
+                            aktiviert wurde. Aber Bilder von einer (richtigen) Foto-Kamera mit Geo-Tags zu versehen,
+                            die keinen GPS-Sensor besitzt, ist etwas komplizierter. Hier soll "Geotag-Logger" helfen.
+                            <br /><br />
+                            <strong>Was ist "Geotag-Logger"?</strong><br />
+                            Diese Anwendung soll das Geo-Tagging von Fotos, die z.B. mit Ihrer Spiegelreflexkamera
+                            aufgenommen werden, erleichtern. Es existieren spezielle Geräte, mit denen man die
+                            Position aufnehmen und später die Positionsdaten mit den Fotos zusammenführen
+                            kann. Aber da Sie ein WebOS-Gerät besitzen können Sie statt eines zusätzlichen Geräts
+                            einfach diese Anwendung zum Aufzeichnen Ihrer Position verwenden. Später nutzen Sie die
+                            GPX-Datei, die diese Anwendung exportiert, um Ihre Fotos am PC z.B. mit der Software
+                            <a href="http://geotag.sourceforge.net/">Geotag</a>,
+                            <a href="http://code.google.com/p/gpicsync/">GPicSync</a> oder einer anderen Anwendung
+                            zu geo-taggen. Die Desktop-Anwendung vergleicht die Uhrzeit Ihrer Fotos mit Ihren
+                            Positionsdaten - Sie sollten also die Uhr Ihrer Kamera sowie Ihres WebOS-Geräts
+                            einigermaßen genau gestellt haben.
+                            <br />
+                            Zusammengefasst zeichnet diese Anwendung einfach Ihre Position auf und liefert Ihnen
+                            eine GPX-Datei, die Sie dazu verwenden können, Ihre Fotos mit einer Drittanwendung
+                            mit Geo-Tags zu versehen.
+                            <br /><br />
+                            <strong>Tracking.</strong><br />
+                            Wenn Sie nur hier und da ein Foto schießen und Ihren Standort nicht häufig verändern,
+                            reicht es völlig aus, wenn Sie vor oder nach der Aufnahme in der Anwendung auf
+                            "Position einmalig speichern" tippen. Wenn Sie ständig in Bewegung sind und viele
+                            Fotos schießen, sollten Sie "Automatisches Tracking" verwenden. Solange dieser
+                            Modus aktiv ist (was durch den Kringel rechts im Button angezeigt wird), speichert
+                            die Anwendung alle fünf Minuten Ihre Position. Während dies Ihren Akku stärker
+                            beansprucht, ist es zugleich bequem, da Sie nicht ständig Ihre Position manuell
+                            tracken müssen. Wenn Sie den Button erneut betätigen, wird das automatische
+                            Tracking deaktiviert. Beachten Sie, dass Ihre Position möglicherweise nur ungenau
+                            aufgezeichnet wird, wenn Sie das automatische Tracking aktiviert haben und das Gerät
+                            in einer Tasche tragen oder sich z.B. in Gebäuden befinden.
+                            <br /><br />
+                            <strong>Export.</strong><br />
+                            Nachdem Sie Ihre Position aufgezeichnet, einige Fotos aufgenommen haben und an Ihrem PC
+                            sitzen, wollen Sie Ihre Fotos geo-taggen. Dazu müssen Sie einfach die Daten, die in
+                            Ihrem Gerät gespeichert sind, exportieren. Nutzen Sie das Anwendungsmenü und wählen
+                            "GPX exportieren". Sie haben dann zwei Auswahlmöglichkeiten: in den meisten Fällen sollte
+                            "GPX v1.1 (empfohlen)" die richtige Wahl sein, denn dies ist die aktuelle Version des
+                            GPX-Formats. Einige ältere Anwendungen könnten aber wählerisch sein und nur das ältere
+                            Format "GPX v1.0" verstehen - im Falle von Problemen verwenden Sie einfach diese Option.
+                            Nach dem Auswählen eines Formats und der Bestätigung des Exports durch die Anwendung
+                            können Sie Ihr Gerät im USB-Modus an den PC anschließen. Auf der USB-Partition des Gerätes
+                            finden Sie nun einen neuen Ordner "geotag-logger". In diesem Ordner finden Sie alle
+                            exportierten GPX-Dateien, die Sie auf Ihren PC kopieren oder verschieben können.
+                            <br /><br />
+                            <strong>Datenbank leeren.</strong><br />
+                            Wenn Sie Ihre Daten exportiert und Ihre Fotos mit Geo-Tags versehen haben, sollten Sie
+                            aufräumen. Dazu wählen Sie "Datenbank leeren" im Anwendungsmenü. Dies leert die Datenbank
+                            der Anwendung - bereits exportierte GPX-Dateien bleiben natürlich auf Ihrer USB-Partition
+                            erhalten. Sie starten nun wieder mit einer frischen Datenbank.
+                            <br /><br />
+                            <strong>Anzeigen der Tracking-Daten auf dem WebOS-Gerät.</strong><br />
+                            Wenn Sie sich unterwegs Ihre Tracking-Daten auf Ihrem WebOS-Gerät schon einmal ansehen
+                            möchten, können Sie die kostenlose Anwendung
+                            <a href="http://developer.palm.com/appredirect/?packageid=com.rustyapps.gpxmapper">GPX Mapper</a>
+                            aus dem App Catalog nutzen. Sie müssen einfach eine GPX-Datei exportieren und diese mit dem
+                            "GPX Mapper" öffnen. Sie bekommen dann Ihre Positionsdaten als Google-Maps-Overlay angezeigt.
+                            <br /><br />
+                            <strong>Credits.</strong><br />
+                            Das Icon dieser Anwendung besteht aus zwei Icons der großartigen
+                            <a href="http://tango.freedesktop.org/Tango_Icon_Library">Tango Icon Library</a>.
+                            <br /><br />
+                            <strong>Freie Software / Open-Source-Software.</strong><br />
+                            Diese Anwendung ist <a href="http://de.wikipedia.org/wiki/Freie_Software">Freie Software</a>,
+                            lizensiert unter der GPL v3. Das bedeutet, die Anwendung ist nicht nur kostenlos, sondern Sie
+                            dürfen sie außerdem an andere weitergeben, sich den Quellcode ansehen (für den Fall, dass Sie
+                            Softwareentwickler sind), den Quellcode Ihren Bedürfnissen anpassen und Ihre Anpassungen mit
+                            anderen teilen. Den Quellcode der Anwendung finden Sie im GIT-Repository über den Link
+                            "Website" unten.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="palm-group">
+        <div class="palm-group-title" id="supportTitle">Support</div>
+        <div class="palm-list">
+            <div class="palm-row first">
+                <div class="palm-row-wrapper">
+                    <div style="margin:5px; padding:5px; font-weight: normal;"><a href="mailto:rk@webpresso.net" style="text-decoration: none; color: black;"><div style="display: inline-block; vertical-align: middle;"><img src="images/mail.png"></div> E-Mail an Entwickler</a></div>
+                </div>
+            </div>
+            <div class="palm-row last">
+                <div class="palm-row-wrapper">
+                    <div style="margin:5px; padding:5px; font-weight: normal;"><a href="http://forge.webpresso.net/projects/geotag-logger" style="text-decoration: none; color: black;"><div style="display: inline-block; vertical-align: middle;"><img src="images/web.png"></div> Website</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 10px 0p 5px 0px; margin: 0;"><center><img src="images/gplv3-127x51.png" alt="GPL v3" /></center></div>
+</div>

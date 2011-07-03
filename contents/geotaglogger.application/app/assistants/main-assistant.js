@@ -15,7 +15,10 @@ MainAssistant.prototype.setup = function() {
             visible: true,
             items: [
                 Mojo.Menu.editItem,
-                { label: $L('Export GPX'), command: 'cmdExport' },
+                { label: $L('Export GPX'), items: [
+                    { label: $L('GPX v1.1 (current)'), command: 'cmdExport11'},
+                    { label: $L('GPX v1.0'), command: 'cmdExport10'}
+                ]},
                 { label: $L('Clear database'), command: 'cmdClear' },
                 { label: $L('Help / About'), command: 'cmdHelp' }
             ]
@@ -132,7 +135,9 @@ MainAssistant.prototype.updateTrackingRecordCounterCallback = function( r ) {
     this.controller.get("recordCount").innerHTML = r.length;
 };
 
-MainAssistant.prototype.exportGPX = function() {
+MainAssistant.prototype.exportGPX = function( version ) {
+    // set format version as instance variable
+    this.gpxVersion = version;
     // load all waypoints from Lawnchair bucket
     this.bucket.all( this.handleExportGPX.bind(this) );
 };
@@ -145,7 +150,7 @@ MainAssistant.prototype.handleExportGPX = function( r ) {
         "palm://net.webpresso.geotaglogger.service",
         {
             method: "save",
-            parameters: {"data": r},
+            parameters: {"data": r, "version": this.gpxVersion},
             onSuccess: this.serviceSaveSuccess.bind(this),
             onFailure: this.serviceSaveFailure.bind(this)
         }
@@ -165,7 +170,7 @@ MainAssistant.prototype.serviceSaveSuccess = function(data) {
 
 MainAssistant.prototype.serviceSaveFailure = function(error) {
     Mojo.Controller.errorDialog(
-        $L('An error occured when saving the GPX file! >> ' + JSON.stringify(error))
+        $L('An error occured when saving the GPX file!') // + JSON.stringify(error))
     );
 };
 
@@ -173,10 +178,11 @@ MainAssistant.prototype.clearData = function(event) {
     this.controller.showAlertDialog({
         onChoose: this.clearDataHandleChoice.bind(this),
         title: $L("Clear saved track data"),
-        message: $L("Do you really want to clear the track database? Your exported GPX files will remain on the USB partition."),
+        message: $L("Do you really want to clear the track database? Your exported GPX files will remain on the "
+            +"USB partition, but possibly not-yet-exported data will be lost."),
         choices:[
-             {label:$L('Clear database'), value:"nuke", type:'negative'},
-             {label:$L("Cancel"), value:"cancel", type:'secondary'}
+            {label:$L('Clear database'), value:"nuke", type:'negative'},
+            {label:$L("Cancel"), value:"cancel", type:'secondary'}
         ]
     });
 };
@@ -270,8 +276,11 @@ MainAssistant.prototype.handleCommand = function(event) {
     if( event.type == Mojo.Event.command ) {
         switch( event.command )
         {
-            case 'cmdExport':
-                this.exportGPX();
+            case 'cmdExport11':
+                this.exportGPX('1.1');
+                break;
+            case 'cmdExport10':
+                this.exportGPX('1.0');
                 break;
             case 'cmdClear':
                 this.clearData();

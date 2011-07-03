@@ -1,0 +1,40 @@
+
+===== EN: GEOTAG LOGGER APP CATALOG =====
+
+Title: Geotag Logger
+Company name: webpresso.net
+Primary Category:
+Secondary Tags:
+
+
+Geotagging of pictures just means to store the (more or less exact) position where the picture was taken as metadata into your pictures. While WebOS devices can geotag their pictures automatically, it's not that easy to tag pictures from a photo camera without GPS sensor.
+
+This is where Geotag Logger can help you: Basically this application just tracks your position (manually or automatically) and allows you to export a GPX file to your USB partition. You can use this file to tag your photos with a third-party desktop application later.
+
+For detailed instructions pick "Help / About" in the application menu.
+
+This application is free and open-source software and licensed under the GPL v3.
+
+
+Support E-Mail: rk@webpresso.net
+Support Web: http://forge.webpresso.net/projects/geotag-logger
+
+
+===== DE: GEOTAG LOGGER APP CATALOG =====
+
+Title: Geotag-Logger
+Company name: webpresso.net
+Primary Category: Fotografie
+Secondary Tags: Kameras/Zubehör
+
+
+Geo-Taggen von Fotos bedeutet das Speichern der Position, an dem das Foto aufgenommen wurde, als Metadaten in der Bilddatei. Während WebOS-Geräte Bilder, die mit der integrierten Kamera aufgenommen wurden, automatisch taggen kann, ist der Vorgang bei Fotokameras ohne eigenen GPS-Sensor etwas komplizierter.
+
+Hier kann Ihnen Geotag-Logger helfen: diese Anwendung zeichnet Ihre Position auf (manuell oder automatisch) und erlaubt es Ihnen, eine GPX-Datei auf Ihre USB-Partition zu exportieren. Diese Datei können Sie dazu nutzen, Ihre Fotos mit Hilfe einer Dritt-Anwendung an Ihrem PC mit Geo-Tags zu versehen.
+
+Diese Anwendung ist freie Software und unter der GPL v3 lizensiert.
+
+
+Support E-Mail: rk@webpresso.net
+Support Web: http://forge.webpresso.net/projects/geotag-logger
+

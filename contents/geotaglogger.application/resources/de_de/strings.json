@@ -1,0 +1,25 @@
+{
+
+    "Export GPX": "GPX exportieren",
+    "GPX v1.1 (current)": "GPX v1.1 (empfohlen)",
+    "GPX v1.0": "GPX v1.0",
+    "Clear database": "Datenbank leeren",
+    "Help / About": "Hilfe / Über",
+    "Record single trackpoint": "Position einmalig speichern",
+    "Record continuous": "Automatisches Tracking",
+    "Can't obtain your location. Have you enabled location services?": "Bestimmung des Standortes nicht möglich. Haben Sie in den Geräteeinstellungen \"Standortbasierte Dienste\" die Ortung aktiviert?",
+    "Tracked current position.": "Aktuelle Position gespeichert.",
+    "Successfully exported GPX": "GPX erfolgreich exportiert.",
+    "Successfully saved GPX file to your USB partition! You can find it in \"geotag-logger\" directory.": "Die GPX-Datei wurde erfolgreich auf Ihre USB-Partition exportiert. Sie finden die Datei im Unterordner \"geotag-logger\".",
+    "OK": "OK",
+    "An error occured when saving the GPX file!": "Beim Speichern der GPX-Datei trat ein Fehler auf!",
+    "Clear saved track data": "Gespeicherte Positionsdaten löschen",
+    "Do you really want to clear the track database? Your exported GPX files will remain on the USB partition, but possibly not-yet-exported data will be lost.": "Wollen Sie wirklich die gespeicherten Positionsdaten löschen? Ihre exportierten GPX-Dateien verbleiben auf Ihrer USB-Partition, aber noch nicht exportierte Daten gehen verloren.",
+    "Cancel": "Abbrechen",
+    "Cleared track database.": "Positionsdaten gelöscht.",
+    "Continuous tracking activated.": "Automatisches Tracking aktiviert.",
+    "Continuous tracking deactivated.": "Automatisches Tracking deaktiviert.",
+    "Can't register alarm for continuous tracking!": "Registrieren eines Alarms für das automatische Tracking nicht möglich!",
+    "back": "zurück"
+
+}
