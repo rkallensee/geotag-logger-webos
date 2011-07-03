@@ -3,8 +3,8 @@
 
 Title: Geotag Logger
 Company name: webpresso.net
-Primary Category:
-Secondary Tags:
+Primary Category: Photography
+Secondary Tags: Tools
 
 
 Geotagging of pictures just means to store the (more or less exact) position where the picture was taken as metadata into your pictures. While WebOS devices can geotag their pictures automatically, it's not that easy to tag pictures from a photo camera without GPS sensor.
