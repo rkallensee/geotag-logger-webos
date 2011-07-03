@@ -1,21 +1,15 @@
 [
-    {
-        "source": "vendor/Lawnchair.js"
-    },
-    {
-        "source": "vendor/adaptors/LawnchairAdaptorHelpers.js"
-    },
-    {
-        "source": "vendor/adaptors/WebkitSQLiteAdaptor.js"
-    },
-    {
-        "source": "app/assistants/app-assistant.js"
-    },
-    {
-        "source": "app/assistants/stage-assistant.js"
-    },
+    {"source": "vendor/Lawnchair.js"},
+    {"source": "vendor/adaptors/LawnchairAdaptorHelpers.js"},
+    {"source": "vendor/adaptors/WebkitSQLiteAdaptor.js"},
+    {"source": "app/assistants/app-assistant.js"},
+    {"source": "app/assistants/stage-assistant.js"},
     {
         "scenes": "main",
         "source": "app/assistants/main-assistant.js"
+    },
+    {
+        "scenes": "help",
+        "source": "app/assistants/help-assistant.js"
     }
 ]

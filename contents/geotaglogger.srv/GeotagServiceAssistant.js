@@ -17,6 +17,39 @@ GeotagServiceAssistant.prototype.run = function(future) {
         return;
     }
 
+    // build the GPX content with the received data
+
+    // http://www.topografix.com/GPX/1/1/
+    // http://de.wikipedia.org/wiki/GPS_Exchange_Format
+    // http://developer.palm.com/index.php?option=com_content&view=article&id=1673#GPS-getCurrentPosition
+
+    var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>'
+        + '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="http://forge.webpresso.net/projects/geotag-logger" version="1.1" '
+            + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+            + 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">'
+            + '<trk>'
+                + '<name><![CDATA[geotag-logger for WebOS track]]></name>'
+                + '<desc><![CDATA[Exported track to geotag your pictures.]]></desc>'
+                + '<number>1</number>'
+                + '<topografix:color>333333</topografix:color>'
+                + '<trkseg>';
+
+    for( var i=0; i<args.data.length; i++ ) {
+        var date = new Date();
+        date.setTime(args.data[i].timestamp);
+        var dateStr = this.getIso8601(date);
+
+        xml += '<trkpt lat="' + args.data[i].latitude + '" lon="' + args.data[i].longitude + '">'
+            + '<ele>' + args.data[i].altitude + '</ele>'
+            + '<time>' + dateStr + '</time>'
+            + '<sym>Waypoint</sym>'
+            + '</trkpt>';
+    }
+
+    xml += '</trkseg></trk></gpx>';
+
+    // save the GPX string as file to the USB partition
+
     var dirname = '/media/internal/geotag-logger/';
     var filename = this.getFilename();
     var gpxPath = dirname + filename;
@@ -38,21 +71,19 @@ GeotagServiceAssistant.prototype.run = function(future) {
     fs.open(gpxPath, "a", 0777, function(err, fd) {
         if( err ) future.result = {reply: 'super!'};
 
-        fs.write(fd, args.data, null, 'utf8', function (err, written) {
+        fs.write(fd, xml, null, 'utf8', function (err, written) {
             if(err) future.result = {error: false, text: err};
             future.result = {error: false, text: 'Successfully exported GPX.'};
         });
     });
 
-/*
-    this.writeData(
-        gpxPath,
-        this.args.data,
-        function(response) {
-            this.future.result = response;
-        }.bind(this)
-    );
-*/
+    //this.writeData(
+    //    gpxPath,
+    //    this.args.data,
+    //    function(response) {
+    //        this.future.result = response;
+    //    }.bind(this)
+    //);
 };
 
 GeotagServiceAssistant.prototype.writeData = function(filename, data, callback) {
@@ -83,3 +114,14 @@ GeotagServiceAssistant.prototype.getFilename = function() {
         +((d.getMinutes() < 10 ? '0' : '')+d.getMinutes())+'-'
         +((d.getSeconds() < 10 ? '0' : '')+d.getSeconds())+'-'+d.getMilliseconds()+'.gpx';
 };
+
+GeotagServiceAssistant.prototype.getIso8601 = function(d) {
+    function pad(n) { return n<10 ? '0'+n : n }
+
+    return d.getUTCFullYear() + '-'
+        + pad( d.getUTCMonth() + 1 ) + '-'
+        + pad( d.getUTCDate() ) + 'T'
+        + pad( d.getUTCHours() ) + ':'
+        + pad( d.getUTCMinutes() ) + ':'
+        + pad( d.getUTCSeconds() ) + 'Z';
+}

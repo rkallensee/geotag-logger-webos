@@ -50,11 +50,18 @@ MainAssistant.prototype.setup = function() {
 };
 
 MainAssistant.prototype.activate = function(event) {
-    Mojo.Event.listen(this.recordButton, Mojo.Event.tap, this.handleRecordButtonPress.bind(this));
-    Mojo.Event.listen(this.recordContinuousButton, Mojo.Event.tap, this.handleRecordContinuousButtonPress.bind(this));
+    this.handleRecordButtonPressCallback = this.handleRecordButtonPress.bind(this);
+    this.handleRecordContinuousButtonPressCallback = this.handleRecordContinuousButtonPress.bind(this);
+
+    Mojo.Event.listen(this.recordButton, Mojo.Event.tap, this.handleRecordButtonPressCallback);
+    Mojo.Event.listen(this.recordContinuousButton, Mojo.Event.tap, this.handleRecordContinuousButtonPressCallback);
+    this.updateTrackingRecordCounter();
 };
 
-MainAssistant.prototype.deactivate = function(event) {};
+MainAssistant.prototype.deactivate = function(event) {
+    Mojo.Event.stopListening(this.recordButton, Mojo.Event.tap, this.handleRecordButtonPressCallback);
+    Mojo.Event.stopListening(this.recordContinuousButton, Mojo.Event.tap, this.handleRecordContinuousButtonPressCallback);
+};
 
 MainAssistant.prototype.cleanup = function(event) {
     this.deleteWakeupCall();
@@ -72,6 +79,10 @@ MainAssistant.prototype.handleDbError = function(transaction, error) {
 
 MainAssistant.prototype.handleRecordButtonPress = function(event){
     this.recordButton.mojo.activate();
+    this.trackCurrentPosition();
+};
+
+MainAssistant.prototype.trackCurrentPosition = function(event){
     this.controller.serviceRequest('palm://com.palm.location', {
         method: "getCurrentPosition",
         parameters: {
@@ -109,6 +120,16 @@ MainAssistant.prototype.saveTrackpoint = function( item ) {
         $L("Tracked current position."),
         { source: 'notification' }
     );
+
+    this.updateTrackingRecordCounter();
+};
+
+MainAssistant.prototype.updateTrackingRecordCounter = function() {
+    this.bucket.all( this.updateTrackingRecordCounterCallback.bind(this) );
+};
+
+MainAssistant.prototype.updateTrackingRecordCounterCallback = function( r ) {
+    this.controller.get("recordCount").innerHTML = r.length;
 };
 
 MainAssistant.prototype.exportGPX = function() {
@@ -119,42 +140,12 @@ MainAssistant.prototype.exportGPX = function() {
 MainAssistant.prototype.handleExportGPX = function( r ) {
     console.log("exporting gpx...");
 
-    // transform to GPX.
-    // http://www.topografix.com/GPX/1/1/
-    // http://de.wikipedia.org/wiki/GPS_Exchange_Format
-    // http://developer.palm.com/index.php?option=com_content&view=article&id=1673#GPS-getCurrentPosition
-
-    var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>'
-        + '<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="http://forge.webpresso.net/projects/geotag-logger" version="1.1" '
-            + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-            + 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">'
-            + '<trk>'
-                + '<name><![CDATA[geotag-logger for WebOS track]]></name>'
-                + '<desc><![CDATA[Exported track to geotag your pictures.]]></desc>'
-                + '<number>1</number>'
-                + '<topografix:color>333333</topografix:color>'
-                + '<trkseg>';
-
-    for( var i=0; i<r.length; i++ ) {
-        var date = new Date()
-        date.setTime(r[i].timestamp);
-        var dateStr = this.getIso8601(date);
-
-        xml += '<trkpt lat="' + r[i].latitude + '" lon="' + r[i].longitude + '">'
-            + '<ele>' + r[i].altitude + '</ele>'
-            + '<time>' + dateStr + '</time>'
-            + '<sym>Waypoint</sym>'
-            + '</trkpt>';
-    }
-
-    xml += '</trkseg></trk></gpx>';
-
-    // calling the geotag-service to write the GPX file
+    // calling the geotag-service to build and write the GPX file
     var req = new Mojo.Service.Request(
         "palm://net.webpresso.geotaglogger.service",
         {
             method: "save",
-            parameters: {"data": xml},
+            parameters: {"data": r},
             onSuccess: this.serviceSaveSuccess.bind(this),
             onFailure: this.serviceSaveFailure.bind(this)
         }
@@ -197,12 +188,14 @@ MainAssistant.prototype.clearDataHandleChoice = function(value) {
             $L("Cleared track database."),
             { source: 'notification' }
         );
+        this.updateTrackingRecordCounter();
     }
 };
 
 MainAssistant.prototype.handleRecordContinuousButtonPress = function(event){
     if( this.trackingContinuously === false ) {
         this.recordContinuousButton.mojo.activate();
+        this.trackCurrentPosition(); // immediately record the first trackpoint
         this.setWakeupCall();
         Mojo.Controller.getAppController().showBanner(
             $L("Continuous tracking activated."),
@@ -254,24 +247,21 @@ MainAssistant.prototype.deleteWakeupCall = function(){
     this.trackingContinuously = false;
 };
 
-MainAssistant.prototype.handleContinuousWakeupSuccess = function(event){
+MainAssistant.prototype.handleContinuousWakeupSuccess = function(event) {
     this.trackingContinuously = true;
 };
 
-MainAssistant.prototype.handleContinuousWakeupFailure = function(event){
+MainAssistant.prototype.handleContinuousWakeupFailure = function(event) {
     this.recordContinuousButton.mojo.deactivate();
     Mojo.Controller.errorDialog(
         $L('Can\'t register alarm for continuous tracking!')
     );
 };
 
-MainAssistant.prototype.handleBackgroundTrackCall = function(){
+MainAssistant.prototype.handleBackgroundTrackCall = function() {
     //console.log("MainAssistant background-called!");
-    Mojo.Controller.getAppController().showBanner(
-        $L("Tracked current position."),
-        { source: 'notification' }
-    );
-    this.setWakeupCall();
+    this.trackCurrentPosition();
+    this.setWakeupCall(); // set a new wakeup request
 };
 
 MainAssistant.prototype.handleCommand = function(event) {
@@ -291,15 +281,4 @@ MainAssistant.prototype.handleCommand = function(event) {
                 break;
         }
     }
-}
-
-MainAssistant.prototype.getIso8601 = function(d) {
-    function pad(n) { return n<10 ? '0'+n : n }
-
-    return d.getUTCFullYear() + '-'
-        + pad( d.getUTCMonth() + 1 ) + '-'
-        + pad( d.getUTCDate() ) + 'T'
-        + pad( d.getUTCHours() ) + ':'
-        + pad( d.getUTCMinutes() ) + ':'
-        + pad( d.getUTCSeconds() ) + 'Z';
 }

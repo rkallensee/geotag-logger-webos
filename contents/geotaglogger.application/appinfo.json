@@ -7,5 +7,6 @@
     "title": "Geotag Logger",
     "icon": "icon.png",
     "noDeprecatedStyles": true,
-    "theme": "light"
+    "theme": "light",
+    "uiRevision": "2"
 }

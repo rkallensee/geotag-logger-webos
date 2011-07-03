@@ -1,8 +1,14 @@
-#main .palm-page-header-wrapper .geotag-header-icon {
+#main .palm-page-header-wrapper .geotag-header-icon,
+#help .palm-page-header-wrapper .geotag-header-icon {
     background: url(../icon-small.png) center no-repeat;
 }
 
-#main .palm-info-text {
+#main .palm-info-text,
+#help .palm-info-text {
     margin: 0;
     padding: 0;
+}
+
+#main span#recordCount {
+    font-weight: bold;
 }
